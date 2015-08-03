@@ -1,0 +1,96 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion '23.0.0rc3'
+
+    /*
+    Test only modules require other artifacts like the classes.jar to be published, so the test can
+    reference the tested java sources and compile them correctly. In order to get all these
+    artifacts published from the tested module publishNonDefault needs to be set to true.
+     */
+    publishNonDefault true
+
+    defaultConfig {
+        applicationId 'com.example.android.testing.blueprint'
+        minSdkVersion 10
+        targetSdkVersion 22
+        versionCode 1
+        versionName '1.0'
+
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+
+        /*
+        Uncomment this to pass custom arguments to AndroidJUnitRunner. If uncommented the
+        custom argument "argument1" will be passed to AndroidJUnitRunner and make
+        AndroidLibraryModuleIntegrationTest fail.
+         */
+        // testInstrumentationRunnerArgument "argument1", "make_test_fail"
+    }
+
+    buildTypes {
+        debug {
+            // A bug in com.android.support.test:runner:0.3 prevents coverage reports generation.
+            // TODO: Uncomment when 0.4 is out.
+            //testCoverageEnabled = true
+
+            // Uncomment this to run test against a minified version of the production APK
+            /*
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFile 'proguard-test-rules.pro'
+             */
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        flavor1 {
+            applicationId 'com.example.android.testing.blueprint.flavor1'
+        }
+
+        flavor2 {
+            applicationId 'com.example.android.testing.blueprint.flavor2'
+        }
+    }
+
+    // Always show the result of every unit test, even if it passes.
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+        }
+    }
+}
+
+dependencies {
+    // App's dependencies, including test
+    compile 'com.android.support:appcompat-v7:22.2.0'
+
+    compile project(':module-plain-java') // Optional module for non-Android code
+    compile project(':module-android-library') // Optional module for additional Android code
+
+    // Dependencies for local unit tests
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+    testCompile 'org.hamcrest:hamcrest-all:1.3'
+
+    // Android Testing Support Library's runner and rules
+    androidTestCompile 'com.android.support.test:runner:0.3'
+    androidTestCompile 'com.android.support.test:rules:0.3'
+
+    // Espresso UI Testing
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2'
+
+    // Espresso-Contrib, Intents and Web dependencies are not used in this project.
+    /*
+    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2'
+    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2'
+    androidTestCompile 'com.android.support.test.espresso:espresso-web:2.2'
+     */
+
+    // UIAutomator Testing. Learn about this dependency in this projects README file.
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.1'
+}

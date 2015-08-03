@@ -1,0 +1,25 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "23.0.0rc3"
+
+    defaultConfig {
+        minSdkVersion 10
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+
+        // Define ProGuard rules for this android library project. These rules will be applied when
+        // a consumer of this library sets 'minifyEnabled true'.
+        consumerProguardFiles 'proguard-consumer-rules.pro'
+    }
+}
+
+dependencies {
+    // Android Testing Support Library's runner and rules
+    androidTestCompile 'com.android.support.test:runner:0.3'
+    androidTestCompile 'com.android.support.test:rules:0.3'
+}

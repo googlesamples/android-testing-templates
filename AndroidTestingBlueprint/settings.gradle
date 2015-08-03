@@ -1,0 +1,4 @@
+include ':app'
+include ':module-plain-java'
+include ':module-flavor1-androidTest-only'
+include ':module-android-library'
