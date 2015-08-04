@@ -70,7 +70,7 @@ From command-line via Gradle:
 Espresso is a part of the ATSL (Android Testing Support Library) and a framework for writing concise, beautiful, and reliable Android UI tests.
 
 #### Espresso-Core
-The core API is small, predictable, and easy to learn API which. Espresso enables  testing of state expectations, interactions, and assertions clearly without the distraction of boilerplate content, custom infrastructure, or messy implementation details getting in the way.
+The core API is small, predictable, and easy to learn API. Espresso enables  testing of state expectations, interactions, and assertions clearly without the distraction of boilerplate content, custom infrastructure, or messy implementation details getting in the way.
 
 Espresso tests run optimally fast! Leave your waits, syncs, sleeps, and polls behind and let Espresso gracefully manipulate and assert on the application UI when it is at rest.
 
