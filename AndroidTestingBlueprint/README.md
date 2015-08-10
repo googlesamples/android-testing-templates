@@ -93,6 +93,7 @@ Espresso-web allows you to seamlessly test WebViews on Android. It uses the popu
 UI Automator testing framework provides a set of APIs to build UI tests that perform interactions on user apps and system apps. The UI Automator APIs allow you to perform operations such as opening the Settings menu or the app launcher in a test device. The UI Automator testing framework is well-suited for writing black box-style automated tests, where the test code does not rely on internal implementation details of the target app.
 
 To learn more about UIAutomator refer to the [BasicSample](https://github.com/googlesamples/android-testing/tree/master/ui/uiautomator/BasicSample)
+
 ## Modules
 
 ### Android Test-Only Module
