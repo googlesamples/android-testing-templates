@@ -222,7 +222,10 @@ https://github.com/googlesamples/android-testing-blueprint
 Patches are encouraged, and may be submitted by forking this project and
 submitting a pull request through GitHub. Please see CONTRIBUTING.md for more details.
 
-You can also use this project to file bugs against the ATSL or build tools by creating a pull request with a failing test or build.
+## Bugs and issues
+Issues for this project should only be filed for problems with the actual samples.
+
+For issues against the build tools use [b.android.com](https://b.android.com). **Pro-tip**: fork this project with a failing test or broken build and include the URL in your bug report. This makes bug description, triaging and debugging much easier.
 
 ## License
 Copyright 2015 The Android Open Source Project, Inc.
