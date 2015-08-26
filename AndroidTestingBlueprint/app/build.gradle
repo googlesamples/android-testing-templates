@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion '23.0.0rc3'
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     /*
     Test only modules require other artifacts like the classes.jar to be published, so the test can
@@ -12,9 +12,10 @@ android {
     publishNonDefault true
 
     defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
         applicationId 'com.example.android.testing.blueprint'
-        minSdkVersion 10
-        targetSdkVersion 22
         versionCode 1
         versionName '1.0'
 
