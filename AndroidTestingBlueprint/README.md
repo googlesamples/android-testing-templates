@@ -114,10 +114,8 @@ Run normally (see above).
 Execute:
 
 ```
-./gradlew module-flavor1-androidTest-only:assembleDebug module-flavor1-androidTest-only:connectedCheck
+./gradlew module-flavor1-androidTest-only:connectedCheck
 ```
-
-Note: `assembleDebug` has to be run before `connectedCheck`. See [bug](https://code.google.com/p/android/issues/detail?id=180689), which will be fixed in 1.3.1 .
 
 ##### From command-line via adb
 You need to install the app and test app first:
@@ -202,7 +200,7 @@ To only run tests for a specific test class, i.e. EspressoTest, execute:
 To pass in an arbitrary argument which can be accessed in a test at runtime, execute:
 
 ``` sh
-`./gradlew module-flavor1-androidTest-only:connectedCheck -Pandroid.testInstrumentationRunnerArguments.argument1=make_test_fail`
+./gradlew module-flavor1-androidTest-only:connectedCheck -Pandroid.testInstrumentationRunnerArguments.argument1=make_test_fail
 ```
 All arguments passed through command line can also be specified in the project's build.gradle file, which is
 great for specifying values which are required by the test harness itself. The `argument1` from the previous
