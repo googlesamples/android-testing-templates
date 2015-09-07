@@ -1,12 +1,12 @@
 apply plugin: 'com.android.test' // A plugin used for test-only-modules
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion = '23.0.0rc3'
+    compileSdkVersion 23
+    buildToolsVersion = '23.0.1'
 
     defaultConfig {
         minSdkVersion 10
-        targetSdkVersion 22
+        targetSdkVersion 23
         // The package name of the test app
         testApplicationId 'com.example.android.testing.blueprint.test'
         // The Instrumentation test runner used to run tests.
