@@ -114,7 +114,7 @@ Run normally (see above).
 Execute:
 
 ```
-./gradlew module-flavor1-androidTest-only:connectedCheck
+./gradlew module-flavor1-androidTest-only:connectedAndroidTest
 ```
 
 ##### From command-line via adb
@@ -188,19 +188,19 @@ property needs to be used, in conjunction with `argName` and `argValue`. Multipl
 For instance, to run all tests annotated with the `@Large` test size qualifier in the app module, execute:
 
 ``` sh
-./gradlew app:connectedCheck -Pandroid.testInstrumentationRunnerArguments.size=large
+./gradlew app:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.size=large
 ```
 
 To only run tests for a specific test class, i.e. EspressoTest, execute:
 
 ``` sh
-./gradlew app:connectedCheck -Pandroid.testInstrumentationRunnerArguments.class=com.example.android.testing.blueprint.ui.espresso.EspressoTest
+./gradlew app:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.android.testing.blueprint.ui.espresso.EspressoTest
 ```
 
 To pass in an arbitrary argument which can be accessed in a test at runtime, execute:
 
 ``` sh
-./gradlew module-flavor1-androidTest-only:connectedCheck -Pandroid.testInstrumentationRunnerArguments.argument1=make_test_fail
+./gradlew module-flavor1-androidTest-only:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.argument1=make_test_fail
 ```
 All arguments passed through command line can also be specified in the project's build.gradle file, which is
 great for specifying values which are required by the test harness itself. The `argument1` from the previous
