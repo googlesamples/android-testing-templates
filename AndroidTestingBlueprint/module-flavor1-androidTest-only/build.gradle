@@ -22,7 +22,7 @@ android {
 
 dependencies {
     // Android Testing Support Library's runner and rules and hamcrest matchers
-    compile 'com.android.support.test:runner:0.3'
-    compile 'com.android.support.test:rules:0.3'
-    compile 'org.hamcrest:hamcrest-core:1.3'
+    compile 'com.android.support.test:runner:' + rootProject.ext.runnerVersion
+    compile 'com.android.support.test:rules:' + rootProject.ext.rulesVersion
+    compile 'org.hamcrest:hamcrest-core:' + rootProject.ext.hamcrestVersion
 }

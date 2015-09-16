@@ -114,10 +114,8 @@ Run normally (see above).
 Execute:
 
 ```
-./gradlew module-flavor1-androidTest-only:assembleDebug module-flavor1-androidTest-only:connectedCheck
+./gradlew module-flavor1-androidTest-only:connectedAndroidTest
 ```
-
-Note: `assembleDebug` has to be run before `connectedCheck`. See [bug](https://code.google.com/p/android/issues/detail?id=180689), which will be fixed in 1.3.1 .
 
 ##### From command-line via adb
 You need to install the app and test app first:
@@ -181,7 +179,7 @@ Since Gradle Android Plugin version 1.2.0 using ProGuard has become a lot easier
 To try it out just uncomment the minify section for the debug build type in the app modules `build.gradle` file.
 
 ## Custom Gradle command-line arguments
-Gradle allows you to pass custom arguments to `AndroidJUnitRunner`. This is equivalent to running `adb shell am instrument -w -e <argName> <argValue>`.
+Gradle allows you to pass custom arguments to `AndroidJUnitRunner`. This is equivalent to running `adb shell am instrument -w -e <argName> <argValue> com.example.android.testing.blueprint.test/android.support.test.runner.AndroidJUnitRunner`.
 Custom arguments can be particularly useful when you just want to run a specific test class/method/qualifier.
 
 To pass a custom argument the -Pcom.android.tools.instrumentationTestRunnerArgs=argName=argValue
@@ -190,19 +188,19 @@ property needs to be used, in conjunction with `argName` and `argValue`. Multipl
 For instance, to run all tests annotated with the `@Large` test size qualifier in the app module, execute:
 
 ``` sh
-`./gradlew app:connectedCheck -Pcom.android.tools.instrumentationTestRunnerArgs=size=large`
+./gradlew app:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.size=large
 ```
 
 To only run tests for a specific test class, i.e. EspressoTest, execute:
 
 ``` sh
-`./gradlew app:connectedCheck -Pcom.android.tools.instrumentationTestRunnerArgs=class=com.example.android.testing.blueprint.ui.espresso.EspressoTest`
+./gradlew app:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.android.testing.blueprint.ui.espresso.EspressoTest
 ```
 
 To pass in an arbitrary argument which can be accessed in a test at runtime, execute:
 
 ``` sh
-`./gradlew module-flavor1-androidTest-only:connectedCheck -Pcom.android.tools.instrumentationTestRunnerArgs=argument1=make_test_fail`
+./gradlew module-flavor1-androidTest-only:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.argument1=make_test_fail
 ```
 All arguments passed through command line can also be specified in the project's build.gradle file, which is
 great for specifying values which are required by the test harness itself. The `argument1` from the previous

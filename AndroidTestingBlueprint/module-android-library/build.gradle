@@ -21,6 +21,6 @@ android {
 
 dependencies {
     // Android Testing Support Library's runner and rules
-    androidTestCompile 'com.android.support.test:runner:0.3'
-    androidTestCompile 'com.android.support.test:rules:0.3'
+    androidTestCompile 'com.android.support.test:runner:' + rootProject.ext.runnerVersion
+    androidTestCompile 'com.android.support.test:rules:' + rootProject.ext.rulesVersion
 }
