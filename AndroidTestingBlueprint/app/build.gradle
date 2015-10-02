@@ -20,6 +20,13 @@ android {
         versionName '1.0'
 
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        /*
+        The Android Testing Support Library collects analytics to continuously improve the testing
+        experience. More specifically, it uploads a hash of the package name of the application
+        under test for each invocation. If you do not wish to upload this data, you can opt-out by
+        passing the following argument to the test runner: disableAnalytics "true".
+         */
+        //testInstrumentationRunnerArguments disableAnalytics: 'true'
 
         /*
         Uncomment this to pass custom arguments to AndroidJUnitRunner. If uncommented the
@@ -31,9 +38,8 @@ android {
 
     buildTypes {
         debug {
-            // A bug in com.android.support.test:runner:0.3 prevents coverage reports generation.
-            // TODO: Uncomment when 0.4 is out.
-            //testCoverageEnabled = true
+            // Run code coverage reports by default on debug builds.
+            testCoverageEnabled = true
 
             // Uncomment this to run test against a minified version of the production APK
             /*

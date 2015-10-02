@@ -165,12 +165,10 @@ From the command-line via Gradle, unit tests for the module-plain-java are gener
 
 A HTML report will be available in `module-plain-java/build/reports/jacoco/test/html/index.html`
 
-Note: Generating JaCoCo reports from command-line via Gradle for the `app` module is currently not working: [https://code.google.com/p/android/issues/detail?id=144664]
+Note: Generating JaCoCo reports from command-line via Gradle for the `app` module is currently only working for instrumentation but not for unit tests: [https://code.google.com/p/android/issues/detail?id=144664]
 
 ### Android tests
 Test coverage reports for Android tests can be found in `app/build/reports/coverage`.
-
-Note: This will be enabled again with the ATSL Runner 0.4.
 
 ## ProGuard
 By default tests are run against a non-minified version of your production APK. In most cases, especially during development, this makes a lot of sense because it speeds up your build and therefore improves your cycle times. However it is important to know about breakages as a result of a minified production APK, thus it makes sense to run your tests against a minified version of your APK.
