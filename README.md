@@ -16,7 +16,7 @@ Other Testing Samples
 - Stack Overflow: http://stackoverflow.com/questions/tagged/android-testing
 
 If you've found an error in this sample, please file an issue:
-https://github.com/googlesamples/android-testing-blueprint
+https://github.com/googlesamples/android-testing-templates/issues
 
 ## License
 Copyright 2015 The Android Open Source Project, Inc.
