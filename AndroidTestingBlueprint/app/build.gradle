@@ -103,8 +103,5 @@ dependencies {
 
     // Resolve conflicts between main and test APK:
     androidTestCompile "com.android.support:support-annotations:$rootProject.supportLibVersion"
-    androidTestCompile "com.android.support:support-v4:$rootProject.supportLibVersion"
-    androidTestCompile "com.android.support:recyclerview-v7:$rootProject.supportLibVersion"
-    androidTestCompile "com.android.support:appcompat-v7:$rootProject.supportLibVersion"
-    androidTestCompile "com.android.support:design:$rootProject.supportLibVersion"
+
 }
