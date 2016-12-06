@@ -100,4 +100,11 @@ dependencies {
 
     // UIAutomator Testing. Learn about this dependency in this projects README file.
     androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:' + rootProject.ext.uiautomatorVersion
+
+    // Resolve conflicts between main and test APK:
+    androidTestCompile "com.android.support:support-annotations:$rootProject.supportLibVersion"
+    androidTestCompile "com.android.support:support-v4:$rootProject.supportLibVersion"
+    androidTestCompile "com.android.support:recyclerview-v7:$rootProject.supportLibVersion"
+    androidTestCompile "com.android.support:appcompat-v7:$rootProject.supportLibVersion"
+    androidTestCompile "com.android.support:design:$rootProject.supportLibVersion"
 }
