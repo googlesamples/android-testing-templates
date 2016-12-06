@@ -61,8 +61,22 @@ From command-line via Gradle:
 - To run the local unit tests in a module execute:
 
 ```
-./gradlew {module}:test
+./gradlew :{module}:test
 ```
+
+- To filter local unit tests to run, you can use:
+
+```
+./gradlew :app:testFlavor1DebugUnitTest --tests "com.example.android.testing.blueprint.*"
+```
+
+In general, in a project with no flavors:
+
+```
+./gradlew :{module}:testDebugUnitTest --tests {test-filter}
+```
+
+Note that you cannot use `./gradlew :app:test` or `./gradlew test` with a filter. Read the [gradle documentation on test filtering](https://docs.gradle.org/current/userguide/java_plugin.html#test_filtering) for more information.
 
 ## Testing frameworks and APIs
 
