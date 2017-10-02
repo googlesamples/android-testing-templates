@@ -226,7 +226,7 @@ See [AndroidJUnitRunner](http://developer.android.com/reference/android/support/
 - Stack Overflow: http://stackoverflow.com/questions/tagged/android-testing
 
 If you've found an error in this sample, please file an issue:
-https://github.com/googlesamples/android-testing-blueprint
+https://github.com/googlesamples/android-testing-templates/issues
 
 ## Contributions
 Patches are encouraged, and may be submitted by forking this project and
