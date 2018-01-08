@@ -2,14 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
-
-    /*
-    Test only modules require other artifacts like the classes.jar to be published, so the test can
-    reference the tested java sources and compile them correctly. In order to get all these
-    artifacts published from the tested module publishNonDefault needs to be set to true.
-     */
-    publishNonDefault true
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -54,6 +46,8 @@ android {
         }
     }
 
+    flavorDimensions "defaultDimension"
+
     productFlavors {
         flavor1 {
             applicationId 'com.example.android.testing.blueprint.flavor1'
@@ -74,34 +68,34 @@ android {
 
 dependencies {
     // App's dependencies, including test
-    compile 'com.android.support:appcompat-v7:' + rootProject.ext.supportLibVersion
+    implementation 'com.android.support:appcompat-v7:' + rootProject.ext.supportLibVersion
 
-    compile project(':module-plain-java') // Optional module for non-Android code
-    compile project(':module-android-library') // Optional module for additional Android code
+    implementation project(':module-plain-java') // Optional module for non-Android code
+    implementation project(':module-android-library') // Optional module for additional Android code
 
     // Dependencies for local unit tests
-    testCompile 'junit:junit:' + rootProject.ext.junitVersion
-    testCompile 'org.mockito:mockito-all:' + rootProject.ext.mockitoVersion
-    testCompile 'org.hamcrest:hamcrest-all:' + rootProject.ext.hamcrestVersion
+    testImplementation 'junit:junit:' + rootProject.ext.junitVersion
+    testImplementation 'org.mockito:mockito-all:' + rootProject.ext.mockitoVersion
+    testImplementation 'org.hamcrest:hamcrest-all:' + rootProject.ext.hamcrestVersion
 
     // Android Testing Support Library's runner and rules
-    androidTestCompile 'com.android.support.test:runner:' + rootProject.ext.runnerVersion
-    androidTestCompile 'com.android.support.test:rules:' + rootProject.ext.rulesVersion
+    androidTestImplementation 'com.android.support.test:runner:' + rootProject.ext.runnerVersion
+    androidTestImplementation 'com.android.support.test:rules:' + rootProject.ext.rulesVersion
 
     // Espresso UI Testing
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:' + rootProject.ext.espressoVersion
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:' + rootProject.ext.espressoVersion
 
     // Espresso-Contrib, Intents and Web dependencies are not used in this project.
     /*
-    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:' + rootProject.ext.espressoVersion
-    androidTestCompile 'com.android.support.test.espresso:espresso-intents:' + rootProject.ext.espressoVersion
-    androidTestCompile 'com.android.support.test.espresso:espresso-web:' + rootProject.ext.espressoVersion
+    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:' + rootProject.ext.espressoVersion
+    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:' + rootProject.ext.espressoVersion
+    androidTestImplementation 'com.android.support.test.espresso:espresso-web:' + rootProject.ext.espressoVersion
      */
 
     // UIAutomator Testing. Learn about this dependency in this projects README file.
-    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:' + rootProject.ext.uiautomatorVersion
+    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:' + rootProject.ext.uiautomatorVersion
 
     // Resolve conflicts between main and test APK:
-    androidTestCompile "com.android.support:support-annotations:$rootProject.supportLibVersion"
+    androidTestImplementation "com.android.support:support-annotations:$rootProject.supportLibVersion"
 
 }

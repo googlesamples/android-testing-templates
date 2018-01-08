@@ -8,9 +8,9 @@ A collection of Google's Android testing tools and frameworks, all integrated in
 - `app/test/` - Unit tests
 - `app/androidTest/` - Instrumentation tests
 - `app/androidTestFlavor2/` - Additional Instrumentation tests for Flavor2.
-- `module-flavor1-androidTest-only/` - Test-only module with Instrumentation tests for Flavor1
 - `module-android-library/` - An Android module (typically a library)
 - `module-android-library/androidTest` - Android Tests for the module-android-library
+- `module-flavor1-androidTest-only/` - Test-only module with Instrumentation tests for Flavor1
 - `module-plain-java/` - A Java module for non-Android code (business logic, utils classes, etc.)
 - `module-plain-java/test` - Unit tests for module-plain-java
 
@@ -226,7 +226,7 @@ See [AndroidJUnitRunner](http://developer.android.com/reference/android/support/
 - Stack Overflow: http://stackoverflow.com/questions/tagged/android-testing
 
 If you've found an error in this sample, please file an issue:
-https://github.com/googlesamples/android-testing-blueprint
+https://github.com/googlesamples/android-testing-templates/issues
 
 ## Contributions
 Patches are encouraged, and may be submitted by forking this project and

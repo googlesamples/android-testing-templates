@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -21,6 +20,6 @@ android {
 
 dependencies {
     // Android Testing Support Library's runner and rules
-    androidTestCompile 'com.android.support.test:runner:' + rootProject.ext.runnerVersion
-    androidTestCompile 'com.android.support.test:rules:' + rootProject.ext.rulesVersion
+    androidTestImplementation 'com.android.support.test:runner:' + rootProject.ext.runnerVersion
+    androidTestImplementation 'com.android.support.test:rules:' + rootProject.ext.rulesVersion
 }
