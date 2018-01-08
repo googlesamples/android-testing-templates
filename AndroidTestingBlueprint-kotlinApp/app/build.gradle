@@ -1,0 +1,106 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        applicationId 'com.example.android.testing.blueprint'
+        versionCode 1
+        versionName '1.0'
+
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        /*
+        The Android Testing Support Library collects analytics to continuously improve the testing
+        experience. More specifically, it uploads a hash of the package name of the application
+        under test for each invocation. If you do not wish to upload this data, you can opt-out by
+        passing the following argument to the test runner: disableAnalytics "true".
+         */
+        // testInstrumentationRunnerArguments disableAnalytics: 'true'
+
+        /*
+        Uncomment this to pass custom arguments to AndroidJUnitRunner. If uncommented the
+        custom argument "argument1" will be passed to AndroidJUnitRunner and make
+        AndroidLibraryModuleIntegrationTest fail.
+         */
+        // testInstrumentationRunnerArgument "argument1", "make_test_fail"
+    }
+
+    buildTypes {
+        debug {
+            // Run code coverage reports by default on debug builds.
+            testCoverageEnabled = true
+
+            // Uncomment this to run test against a minified version of the production APK
+            /*
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFile 'proguard-test-rules.pro'
+             */
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "defaultDimension"
+
+    productFlavors {
+        flavor1 {
+            applicationId 'com.example.android.testing.blueprint.flavor1'
+        }
+
+        flavor2 {
+            applicationId 'com.example.android.testing.blueprint.flavor2'
+        }
+    }
+
+    // Always show the result of every unit test, even if it passes.
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+        }
+    }
+}
+
+dependencies {
+    // App's dependencies, including test
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+
+    implementation project(':module-plain-kotlin') // Optional module for non-Android code
+    implementation project(':module-android-library') // Optional module for additional Android code
+
+    // Dependencies for local unit tests
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    testImplementation "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
+    testImplementation "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
+
+    // Android Testing Support Library's runner and rules
+    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.runnerVersion"
+    androidTestImplementation "com.android.support.test:rules:$rootProject.ext.rulesVersion"
+
+    // Espresso UI Testing
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
+
+    // Espresso-Contrib, Intents and Web dependencies are not used in this project.
+    /*
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-web:$rootProject.ext.espressoVersion"
+     */
+
+    // UIAutomator Testing. Learn about this dependency in this projects README file.
+    androidTestImplementation "com.android.support.test.uiautomator:uiautomator-v18:$rootProject.ext.uiautomatorVersion"
+
+    // Resolve conflicts between main and test APK:
+    androidTestImplementation "com.android.support:support-annotations:$rootProject.supportLibVersion"
+
+}
