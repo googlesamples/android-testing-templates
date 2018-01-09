@@ -1,6 +1,9 @@
 # Android Testing Templates
 
-[Android Testing Blueprint](https://github.com/googlesamples/android-testing-templates/tree/master/AndroidTestingBlueprint) - 
+Android Testing Blueprint (in
+[Java](https://github.com/googlesamples/android-testing-templates/tree/master/AndroidTestingBlueprint)
+and
+[Kotlin](https://github.com/googlesamples/android-testing-templates/tree/master/AndroidTestingBlueprint-kotlinApp)) -
 A collection of Google's Android testing tools and frameworks, all integrated in a single application project.
 
 Android Testing Support Library
@@ -19,7 +22,7 @@ If you've found an error in this sample, please file an issue:
 https://github.com/googlesamples/android-testing-templates/issues
 
 ## License
-Copyright 2015 The Android Open Source Project, Inc.
+Copyright 2017 The Android Open Source Project, Inc.
 
 Licensed to the Apache Software Foundation (ASF) under one or more contributor
 license agreements.  See the NOTICE file distributed with this work for
