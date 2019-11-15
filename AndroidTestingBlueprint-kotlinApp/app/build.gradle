@@ -15,7 +15,7 @@ android {
         versionCode 1
         versionName '1.0'
 
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         /*
         The Android Testing Support Library collects analytics to continuously improve the testing
         experience. More specifically, it uploads a hash of the package name of the application
@@ -72,7 +72,7 @@ android {
 
 dependencies {
     // App's dependencies, including test
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
     implementation project(':module-plain-kotlin') // Optional module for non-Android code
@@ -84,11 +84,11 @@ dependencies {
     testImplementation "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
 
     // Android Testing Support Library's runner and rules
-    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.runnerVersion"
-    androidTestImplementation "com.android.support.test:rules:$rootProject.ext.rulesVersion"
+    androidTestImplementation "androidx.test.ext:junit:1.1.1"
+    androidTestImplementation "androidx.test:rules:$rulesVersion"
 
     // Espresso UI Testing
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     // Espresso-Contrib, Intents and Web dependencies are not used in this project.
     /*
@@ -98,9 +98,9 @@ dependencies {
      */
 
     // UIAutomator Testing. Learn about this dependency in this projects README file.
-    androidTestImplementation "com.android.support.test.uiautomator:uiautomator-v18:$rootProject.ext.uiautomatorVersion"
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
 
     // Resolve conflicts between main and test APK:
-    androidTestImplementation "com.android.support:support-annotations:$rootProject.supportLibVersion"
+    androidTestImplementation 'androidx.annotation:annotation:1.1.0'
 
 }

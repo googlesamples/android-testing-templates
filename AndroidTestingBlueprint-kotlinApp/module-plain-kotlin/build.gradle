@@ -1,9 +1,10 @@
 apply plugin: 'kotlin'
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
     // Dependencies for local unit tests
-    testCompile 'junit:junit:' + rootProject.ext.junitVersion
-    testCompile 'org.hamcrest:hamcrest-core:' + rootProject.ext.hamcrestVersion
+
+    testImplementation 'junit:junit:' + rootProject.ext.junitVersion
+    testImplementation 'org.hamcrest:hamcrest-core:' + rootProject.ext.hamcrestVersion
 }

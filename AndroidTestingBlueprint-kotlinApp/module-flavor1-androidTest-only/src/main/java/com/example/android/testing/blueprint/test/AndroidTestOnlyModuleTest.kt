@@ -17,8 +17,8 @@
 package com.example.android.testing.blueprint.test
 
 import android.content.Context
-import android.support.test.InstrumentationRegistry.getTargetContext
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import com.example.android.testing.blueprint.R
 import junit.framework.Assert.assertEquals
 import org.junit.Before
@@ -35,7 +35,7 @@ class AndroidTestOnlyModuleTest {
 
     @Before fun initTargetContext() {
         // Obtain the target context from InstrumentationRegistry
-        context = getTargetContext()
+        context = InstrumentationRegistry.getInstrumentation().targetContext
     }
 
     @Test fun verifyResourceString() {
