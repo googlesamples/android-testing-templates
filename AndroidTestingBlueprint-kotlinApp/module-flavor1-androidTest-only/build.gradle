@@ -27,5 +27,5 @@ dependencies {
     implementation "com.android.support.test:runner:$rootProject.ext.runnerVersion"
     implementation "com.android.support.test:rules:$rootProject.ext.rulesVersion"
     implementation "org.hamcrest:hamcrest-core:$rootProject.ext.hamcrestVersion"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 }
