@@ -17,9 +17,9 @@
 package com.example.android.testing.blueprint.integration
 
 import android.content.Context
-import android.support.test.InstrumentationRegistry
-import android.support.test.InstrumentationRegistry.getTargetContext
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.InstrumentationRegistry
+import androidx.test.InstrumentationRegistry.getTargetContext
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.android.testing.blueprint.R
 import com.example.android.testing.blueprint.androidlibrarymodule.AndroidLibraryModuleClass
 import org.hamcrest.CoreMatchers.equalTo

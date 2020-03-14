@@ -24,7 +24,15 @@ abbTest {
 
 dependencies {
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    compileOnly "com.android.support.test:runner:$rootProject.ext.runnerVersion"
-    compileOnly "com.android.support.test:rules:$rootProject.ext.rulesVersion"
+    compileOnly "androidx.test:runner:$rootProject.ext.runnerVersion"
+    compileOnly "androidx.test:rules:$rootProject.ext.rulesVersion"
     compileOnly "org.hamcrest:hamcrest-core:$rootProject.ext.hamcrestVersion"
+
+    // https://github.com/android/android-test
+    compileOnly "androidx.test:core-ktx:1.2.0"
+    compileOnly "androidx.test.ext:junit:1.1.1"
+    compileOnly "androidx.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
+    compileOnly "androidx.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion"
+    compileOnly "androidx.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
+//    implementation "androidx.test.espresso:espresso-web:$rootProject.ext.espressoVersion"
 }

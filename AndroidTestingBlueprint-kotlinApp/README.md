@@ -42,7 +42,7 @@ application project.
 
 ``` sh
 adb shell am instrument -w \
-com.example.android.testing.blueprint.flavor2.test/android.support.test.runner.AndroidJUnitRunner
+com.example.android.testing.blueprint.flavor2.test/androidx.test.runner.AndroidJUnitRunner
 ```
 
 See the [Modules](#modules), [Flavors](#flavors) and custom
@@ -168,7 +168,7 @@ Execute the adb command:
 
 ```
 adb shell am instrument -w \
-com.example.android.testing.blueprint.test/android.support.test.runner.AndroidJUnitRunner
+com.example.android.testing.blueprint.test/androidx.test.runner.AndroidJUnitRunner
 ```
 
 ### Plain Kotlin module
@@ -224,7 +224,7 @@ To try it out just uncomment the minify section for the debug build type in the 
 
 ## Custom Gradle command-line arguments
 Gradle allows you to pass custom arguments to `AndroidJUnitRunner`. This is equivalent to running
-`adb shell am instrument -w -e <argName> <argValue> com.example.android.testing.blueprint.test/android.support.test.runner.AndroidJUnitRunner`.
+`adb shell am instrument -w -e <argName> <argValue> com.example.android.testing.blueprint.test/androidx.test.runner.AndroidJUnitRunner`.
 Custom arguments can be particularly useful when you just want to run a specific test
 class/method/qualifier.
 
@@ -258,7 +258,7 @@ from the previous example could also be permanently added using the
 `testInstrumentationRunnerArgument` property in the build.gradle file. Look at the app modules
 build.gradle file for usage.
 
-See [AndroidJUnitRunner](http://developer.android.com/reference/android/support/test/runner/AndroidJUnitRunner.html)
+See [AndroidJUnitRunner](http://developer.android.com/reference/androidx.test/runner/AndroidJUnitRunner.html)
 documentation to learn more about custom command-line arguments.
 
 ## Support

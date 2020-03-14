@@ -17,6 +17,6 @@
     package="com.example.android.testing.blueprint">
 
     <uses-sdk android:targetSdkVersion="22" android:minSdkVersion="10"
-        tools:overrideLibrary="android.support.test.uiautomator.v18"/>
+        tools:overrideLibrary="androidx.test.uiautomator.v18"/>
 
 </manifest>

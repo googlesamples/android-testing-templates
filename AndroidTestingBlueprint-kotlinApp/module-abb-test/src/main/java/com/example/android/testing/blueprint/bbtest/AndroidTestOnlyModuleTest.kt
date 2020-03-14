@@ -16,11 +16,17 @@
 
 package com.example.android.testing.blueprint.bbtest
 
+import android.app.Activity
 import android.content.Context
-import android.support.test.InstrumentationRegistry.getTargetContext
-import android.support.test.runner.AndroidJUnit4
-import android.util.Log
-import org.junit.Before
+import android.content.Intent
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.core.app.launchActivity
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -30,14 +36,21 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class AndroidTestOnlyModuleTest {
 
-    private lateinit var context: Context
-
-    @Before fun initTargetContext() {
-        // Obtain the target context from InstrumentationRegistry
-        context = getTargetContext()
+    companion object {
+        const val APP_PACKAGE = "com.example.android.testing.blueprint"
     }
 
     @Test fun verifyItsWorking() {
-        Log.e("BBTest", "It's working 🎉")
+        val intent = Intent(Intent.ACTION_VIEW)
+            .setClassName(
+                ApplicationProvider.getApplicationContext<Context>(),
+                "$APP_PACKAGE.HelloTestingBlueprintActivity"
+            )
+
+        launchActivity<Activity>(intent).onActivity { activity ->
+            onView(withText("Android Testing!")).perform(click())
+            onView(withId(activity.resources.getIdentifier("text_view_rocks", "id", activity.packageName)))
+                .check(ViewAssertions.matches(withText("Rocks")))
+        }
     }
 }

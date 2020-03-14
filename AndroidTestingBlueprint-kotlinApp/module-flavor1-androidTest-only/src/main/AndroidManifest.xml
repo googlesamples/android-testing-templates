@@ -15,6 +15,6 @@
           package="com.example.android.testing.blueprint.test">
 
     <!-- Specify runner and target application package -->
-    <instrumentation android:name="android.support.test.runner.AndroidJUnitRunner"
+    <instrumentation android:name="androidx.test.runner.AndroidJUnitRunner"
                      android:targetPackage="com.example.android.testing.blueprint.flavor1"/>
 </manifest>

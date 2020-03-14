@@ -13,7 +13,7 @@ android {
         versionCode 1
         versionName '1.0'
 
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         /*
         The Android Testing Support Library collects analytics to continuously improve the testing
         experience. More specifically, it uploads a hash of the package name of the application
@@ -70,7 +70,7 @@ android {
 
 dependencies {
     // App's dependencies, including test
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.ext.supportLibVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
     implementation project(':module-plain-kotlin') // Optional module for non-Android code
@@ -82,23 +82,19 @@ dependencies {
     testImplementation "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
 
     // Android Testing Support Library's runner and rules
-    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.runnerVersion"
-    androidTestImplementation "com.android.support.test:rules:$rootProject.ext.rulesVersion"
+    androidTestImplementation "androidx.test:runner:$rootProject.ext.runnerVersion"
+    androidTestImplementation "androidx.test:rules:$rootProject.ext.rulesVersion"
 
-    // Espresso UI Testing
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
-
-    // Espresso-Contrib, Intents and Web dependencies are not used in this project.
-    /*
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-web:$rootProject.ext.espressoVersion"
-     */
+    // https://github.com/android/android-test
+    implementation "androidx.test:core-ktx:1.2.0"
+    implementation "androidx.test.ext:junit:1.1.1"
+    implementation "androidx.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
+    implementation "androidx.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion"
+    implementation "androidx.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
 
     // UIAutomator Testing. Learn about this dependency in this projects README file.
-    androidTestImplementation "com.android.support.test.uiautomator:uiautomator-v18:$rootProject.ext.uiautomatorVersion"
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:$rootProject.ext.uiautomatorVersion"
 
     // Resolve conflicts between main and test APK:
-    androidTestImplementation "com.android.support:support-annotations:$rootProject.supportLibVersion"
-
+    androidTestImplementation "androidx.annotation:annotation:1.1.0"
 }

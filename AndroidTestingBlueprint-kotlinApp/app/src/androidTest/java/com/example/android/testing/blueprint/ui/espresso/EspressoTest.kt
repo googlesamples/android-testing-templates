@@ -16,13 +16,18 @@
 
 package com.example.android.testing.blueprint.ui.espresso
 
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.withText
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
+import android.app.Activity
+import android.content.ComponentName
+import android.content.Intent
+import androidx.test.core.app.launchActivity
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.rule.ActivityTestRule
 import com.example.android.testing.blueprint.HelloTestingBlueprintActivity
 import com.example.android.testing.blueprint.R
 import org.junit.Rule
@@ -32,17 +37,32 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class EspressoTest {
 
+    companion object {
+        const val APP_PACKAGE = "com.example.android.testing.blueprint"
+    }
+
     @Suppress("MemberVisibilityCanPrivate") // ActivityTestRule needs to be public
     @get:Rule
-    var activityRule = ActivityTestRule(HelloTestingBlueprintActivity::class.java)
+    var activityRule = object : ActivityTestRule<Activity>(Activity::class.java) {
+        override fun getActivityIntent(): Intent {
+            return Intent.makeMainActivity(ComponentName(
+                InstrumentationRegistry.getInstrumentation().targetContext,
+                "$APP_PACKAGE.HelloTestingBlueprintActivity"
+            ))
+        }
+    }
+    val activity by lazy { activityRule.activity }
 
-    @Test fun findViewPerformActionAndCheckAssertion() {
-        // Find Button and Click on it
-        onView(withId(R.id.btn_hello_android_testing)).perform(click())
+    @Test fun verifyItsWorking() {
+//        val intent = Intent.makeMainActivity(ComponentName(
+//            InstrumentationRegistry.getInstrumentation().targetContext,
+//            "$APP_PACKAGE.HelloTestingBlueprintActivity"
+//        ))
 
-        // Find TextView and verify the correct text that is displayed
-        onView(withId(R.id.text_view_rocks))
-                .check(matches(withText(
-                        activityRule.activity.getString(R.string.android_testing_rocks))))
+//        launchActivity<HelloTestingBlueprintActivity>().onActivity { activity ->
+        onView(withText("Android Testing!")).perform(click())
+        onView(withId(activity.resources.getIdentifier("text_view_rocks", "id", activity.packageName)))
+            .check(matches(withText("Rocks")))
+//        }
     }
 }

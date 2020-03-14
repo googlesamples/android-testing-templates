@@ -16,13 +16,20 @@
 
 package com.example.android.testing.blueprint.test
 
-import android.content.Context
-import android.support.test.InstrumentationRegistry.getTargetContext
-import android.support.test.runner.AndroidJUnit4
+import android.app.Activity
+import android.content.ComponentName
+import android.content.Intent
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.core.app.launchActivity
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.rule.ActivityTestRule
 import com.example.android.testing.blueprint.HelloTestingBlueprintActivity
-import com.example.android.testing.blueprint.R
-import junit.framework.Assert.assertEquals
-import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -32,16 +39,33 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class AndroidTestOnlyModuleTest {
 
-    private lateinit var context: Context
-
-    @Before fun initTargetContext() {
-        // Obtain the target context from InstrumentationRegistry
-        context = getTargetContext()
+    companion object {
+        const val APP_PACKAGE = "com.example.android.testing.blueprint"
     }
 
-    @Test fun verifyResourceString() {
-        assertEquals(context.getString(R.string.hello_from_the_test_only_module),
-                "Hello from the test only module!")
+    @Suppress("MemberVisibilityCanPrivate") // ActivityTestRule needs to be public
+    @get:Rule
+    var activityRule = object : ActivityTestRule<Activity>(Activity::class.java) {
+        override fun getActivityIntent(): Intent {
+            return Intent.makeMainActivity(ComponentName(
+                InstrumentationRegistry.getInstrumentation().targetContext,
+                "$APP_PACKAGE.HelloTestingBlueprintActivity"
+            ))
+        }
     }
+//    var activityRule = ActivityTestRule(HelloTestingBlueprintActivity::class.java)
+    val activity by lazy { activityRule.activity }
 
+    @Test fun verifyItsWorking() {
+//        val intent = Intent.makeMainActivity(ComponentName(
+//            InstrumentationRegistry.getInstrumentation().targetContext,
+//            "$APP_PACKAGE.HelloTestingBlueprintActivity"
+//        ))
+
+//        launchActivity<HelloTestingBlueprintActivity>().onActivity { activity ->
+            onView(withText("Android Testing!")).perform(click())
+            onView(withId(activity.resources.getIdentifier("text_view_rocks", "id", activity.packageName)))
+                .check(matches(withText("Rocks")))
+//        }
+    }
 }

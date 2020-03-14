@@ -45,6 +45,7 @@ open class AndroidTestApkMerge : DefaultTask() {
 
         val unalignedApk = outputDir.resolve("$APK_PREFIX-unaligned.apk")
 
+        // TODO: use https://android.googlesource.com/platform/tools/base/+/refs/heads/studio-master-dev/zipflinger/
         ZipOutputStream(FileOutputStream(unalignedApk)).use { outputZip ->
             // Append all files from original APK + count existing dex files
             var dexCount = ZipFile(baseApkPath).use { zipFile ->
