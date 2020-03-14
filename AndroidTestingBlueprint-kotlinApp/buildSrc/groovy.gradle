@@ -1,0 +1,22 @@
+configurations {
+    create("fixtureClasspath")
+}
+
+// Append any extra dependencies to the test fixtures via a custom configuration classpath. This
+// allows us to apply additional plugins in a fixture while still leveraging dependency resolution
+// and de-duplication semantics.
+tasks.getByName("pluginUnderTestMetadata")
+    .getPluginClasspath()
+    .from(configurations.fixtureClasspath)
+
+// From https://stackoverflow.com/a/59418448/132047
+tasks.named("compileGroovy") {
+    // Groovy only needs the declared dependencies
+    // and not the output of compileJava
+    classpath = sourceSets.main.compileClasspath
+}
+tasks.named("compileKotlin") {
+    // Kotlin also depends on the result of Groovy compilation
+    // which automatically makes it depend of compileGroovy
+    classpath += files(sourceSets.main.groovy.classesDirectory)
+}

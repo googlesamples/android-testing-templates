@@ -1,0 +1,30 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.github.pgreze.gradle.android-black-box-test'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId = "abbtest.app"
+
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+abbTest {
+    keystore = file("/Users/pgreze/.android/debug.keystore")
+    androidTestApkPath = file("$projectDir/../app/" +
+            "build/outputs/apk/androidTest/flavor1/debug/app-flavor1-debug-androidTest.apk")
+}
+
+dependencies {
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    compileOnly "com.android.support.test:runner:$rootProject.ext.runnerVersion"
+    compileOnly "com.android.support.test:rules:$rootProject.ext.rulesVersion"
+    compileOnly "org.hamcrest:hamcrest-core:$rootProject.ext.hamcrestVersion"
+}
