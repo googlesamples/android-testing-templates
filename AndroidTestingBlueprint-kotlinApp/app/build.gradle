@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -73,7 +71,7 @@ android {
 dependencies {
     // App's dependencies, including test
     implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
     implementation project(':module-plain-kotlin') // Optional module for non-Android code
     implementation project(':module-android-library') // Optional module for additional Android code

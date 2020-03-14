@@ -19,6 +19,7 @@ package com.example.android.testing.blueprint.test
 import android.content.Context
 import android.support.test.InstrumentationRegistry.getTargetContext
 import android.support.test.runner.AndroidJUnit4
+import com.example.android.testing.blueprint.HelloTestingBlueprintActivity
 import com.example.android.testing.blueprint.R
 import junit.framework.Assert.assertEquals
 import org.junit.Before

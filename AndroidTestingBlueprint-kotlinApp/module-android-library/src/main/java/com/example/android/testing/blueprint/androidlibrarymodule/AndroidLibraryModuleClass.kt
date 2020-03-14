@@ -21,7 +21,6 @@ package com.example.android.testing.blueprint.androidlibrarymodule
  * The main app module can call classes and also use Activities, Resources, etc. from the library.
  */
 class AndroidLibraryModuleClass {
-
     /**
      * A sample method.
      *
