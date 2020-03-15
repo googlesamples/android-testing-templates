@@ -27,6 +27,9 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.core.app.launchActivity
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.rule.ActivityTestRule
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -36,21 +39,43 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class AndroidTestOnlyModuleTest {
 
-    companion object {
-        const val APP_PACKAGE = "com.example.android.testing.blueprint"
+    @Suppress("MemberVisibilityCanPrivate") // ActivityTestRule needs to be public
+    @get:Rule
+    var activityRule = object : ActivityTestRule<Activity>(Activity::class.java) {
+        override fun getActivityIntent(): Intent {
+            return object : Intent(ACTION_VIEW) {
+                init {
+                    super.setClassName(
+                        InstrumentationRegistry.getInstrumentation().targetContext,
+                        "com.example.android.testing.blueprint.HelloTestingBlueprintActivity"
+                    )
+                }
+
+                override fun setClassName(packageName: String, className: String): Intent {
+                    return this
+                }
+            }
+        }
     }
+    val activity by lazy { activityRule.activity }
 
     @Test fun verifyItsWorking() {
-        val intent = Intent(Intent.ACTION_VIEW)
-            .setClassName(
-                ApplicationProvider.getApplicationContext<Context>(),
-                "$APP_PACKAGE.HelloTestingBlueprintActivity"
-            )
+//        val intent = object : Intent(ACTION_VIEW) {
+//            init {
+//                super.setClassName(
+//                    InstrumentationRegistry.getInstrumentation().targetContext,
+//                    "com.example.android.testing.blueprint.HelloTestingBlueprintActivity"
+//                )
+//            }
+//            override fun setClassName(packageName: String, className: String): Intent {
+//                return this
+//            }
+//        }
 
-        launchActivity<Activity>(intent).onActivity { activity ->
+//        launchActivity<Activity>(intent).onActivity { activity ->
             onView(withText("Android Testing!")).perform(click())
             onView(withId(activity.resources.getIdentifier("text_view_rocks", "id", activity.packageName)))
                 .check(ViewAssertions.matches(withText("Rocks")))
-        }
+//        }
     }
 }

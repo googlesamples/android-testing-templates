@@ -3,8 +3,8 @@
 buildscript {
     ext {
         minSdkVersion = 18
-        targetSdkVersion = 27
-        compileSdkVersion = 27
+        targetSdkVersion = 29
+        compileSdkVersion = 29
         kotlinVersion = "1.3.61"
         supportLibVersion = "1.1.0"
         junitVersion = "4.12"

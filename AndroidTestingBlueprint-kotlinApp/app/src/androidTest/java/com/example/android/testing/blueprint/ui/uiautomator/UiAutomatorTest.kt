@@ -89,7 +89,7 @@ class UiAutomatorTest {
 
         // Launch the blueprint app
         val context = InstrumentationRegistry.getContext()
-        val intent = context.packageManager.getLaunchIntentForPackage(TARGET_PACKAGE).apply {
+        val intent = context.packageManager.getLaunchIntentForPackage(TARGET_PACKAGE)!!.apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)    // Clear out any previous instances
         }
         context.startActivity(intent)

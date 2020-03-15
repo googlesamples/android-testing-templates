@@ -18,13 +18,17 @@ package com.example.android.testing.blueprint.ui.espresso
 
 import android.app.Activity
 import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
+import androidx.test.core.app.ActivityScenario
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.core.app.launchActivity
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
@@ -37,21 +41,19 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class EspressoTest {
 
-    companion object {
-        const val APP_PACKAGE = "com.example.android.testing.blueprint"
-    }
-
     @Suppress("MemberVisibilityCanPrivate") // ActivityTestRule needs to be public
     @get:Rule
-    var activityRule = object : ActivityTestRule<Activity>(Activity::class.java) {
-        override fun getActivityIntent(): Intent {
-            return Intent.makeMainActivity(ComponentName(
-                InstrumentationRegistry.getInstrumentation().targetContext,
-                "$APP_PACKAGE.HelloTestingBlueprintActivity"
-            ))
-        }
-    }
+//    var activityRule = object : ActivityTestRule<Activity>(Activity::class.java) {
+//        override fun getActivityIntent(): Intent {
+//            return Intent.makeMainActivity(ComponentName(
+//                ApplicationProvider.getApplicationContext<Context>(),
+//                "$APP_PACKAGE.HelloTestingBlueprintActivity"
+//            ))
+//        }
+//    }
+    var activityRule = ActivityTestRule(HelloTestingBlueprintActivity::class.java)
     val activity by lazy { activityRule.activity }
+//    val scenarioRule = ActivityScenarioRule(HelloTestingBlueprintActivity::class.java)
 
     @Test fun verifyItsWorking() {
 //        val intent = Intent.makeMainActivity(ComponentName(
@@ -59,10 +61,11 @@ class EspressoTest {
 //            "$APP_PACKAGE.HelloTestingBlueprintActivity"
 //        ))
 
-//        launchActivity<HelloTestingBlueprintActivity>().onActivity { activity ->
-        onView(withText("Android Testing!")).perform(click())
-        onView(withId(activity.resources.getIdentifier("text_view_rocks", "id", activity.packageName)))
-            .check(matches(withText("Rocks")))
+//        scenarioRule.scenario.onActivity { activity ->
+            onView(withId(R.id.btn_hello_android_testing)).perform(click())
+            onView(withId(R.id.text_view_rocks))
+                .check(matches(withText(
+                    activity.getString(R.string.android_testing_rocks))))
 //        }
     }
 }
