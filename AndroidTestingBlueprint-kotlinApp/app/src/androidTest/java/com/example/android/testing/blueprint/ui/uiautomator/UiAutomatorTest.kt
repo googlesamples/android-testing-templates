@@ -45,7 +45,7 @@ import java.util.concurrent.TimeUnit
  * on lower API levels.
  */
 @RunWith(AndroidJUnit4::class)
-@SdkSuppress(minSdkVersion = 18)
+@SdkSuppress(minSdkVersion = 21)
 class UiAutomatorTest {
 
     private val LAUNCH_TIMEOUT = 5000
