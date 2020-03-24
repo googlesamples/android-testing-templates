@@ -3,11 +3,33 @@
 A collection of Google's Android testing tools and frameworks, all integrated in a single
 application project.
 
+## ABB current situation
+
+Working with the makefile but no IDE integration.
+
+if com.android.test:
+- need to mock targetApp, but no way to create one programatically, so better use usual app
+
+if com.android.application:
+- TODO: override app output with existing one
+- TODO: override androidTests output with existing one + merge
+but how to do it?!
+
+Possible improvements if possible:
+- extract R/BuildConfig classes from APK
+- provide helpers for Espresso, to avoid AbbTest hacks
+
 ## Common errors
 
 > Error=Unable to find instrumentation info for: ComponentInfo{com.example.android.testing.blueprint.flavor1.test/android.support.test.runner.AndroidJUnitRunner}
 
 It's probably because test runner is wrong, see `adb shell pm list instrumentation` output to fix it.
+
+> java.lang.IllegalStateException: This app has been built with an incorrect configuration. Please configure your build for VectorDrawableCompat.
+
+App compat loads incorrect resources in test module: https://issuetracker.google.com/issues/129421689
+
+This is blocking com.android.test module execution, abb-test is running fine because internal androidTests is not impacted.
 
 ## Structure:
 
@@ -93,8 +115,8 @@ for more information.
 ## Testing frameworks and APIs
 
 ### Espresso
-Espresso is a part of the ATSL (Android Testing Support Library) and a framework for writing
-concise, beautiful, and reliable Android UI tests.
+Espresso is a part of the ATSL ([Android Testing Support Library site](https://google.github.io/android-testing-support-library/))
+and a framework for writing concise, beautiful, and reliable Android UI tests.
 
 #### Espresso-Core
 The core API is small, predictable, and easy to learn API which. Espresso enables testing of state

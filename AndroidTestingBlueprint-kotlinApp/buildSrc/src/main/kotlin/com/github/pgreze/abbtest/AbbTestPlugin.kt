@@ -11,20 +11,14 @@ class AndroidBlackBoxTestPlugin : Plugin<Project> {
     override fun apply(project: Project) {
         project.extensions.create("abbTest", AbbTestExtension::class.java)
 
-//        project.extensions.getByType(AppExtension::class.java).apply {
-//            defaultConfig {
-//                applicationId = "abb-test"
-//            }
-//        }
-
         project.plugins.withType(AppPlugin::class.java) {
             val extension = project.extensions.getByType(AppExtension::class.java)
-            project.setupTasks(extension)
+            setupTasks(project, extension)
         }
     }
 }
 
-private fun Project.setupTasks(appExtension: AppExtension) {
+private fun setupTasks(project: Project, appExtension: AppExtension) {
     val ext = project.extensions.getByType(AbbTestExtension::class.java)
 
     val buildToolsPath = appExtension.sdkDirectory
@@ -43,11 +37,11 @@ private fun Project.setupTasks(appExtension: AppExtension) {
             dependsOn("assembleDebug")
 
             baseApkPath = ext.androidTestApkPath
-            testApkPath = projectDir.resolve("build/outputs/apk/debug/${project.name}-debug.apk")
+            testApkPath = project.projectDir.resolve("build/outputs/apk/debug/${project.name}-debug.apk")
             zipAlignPath = buildToolsPath.resolve("zipalign")
             keystore = ext.keystore
             apkSignerPath = buildToolsPath.resolve("apksigner")
-            outputDir = projectDir.resolve("build/outputs/abbTest/")
+            outputDir = project.projectDir.resolve("build/outputs/abbTest/")
         }
     }
 }
