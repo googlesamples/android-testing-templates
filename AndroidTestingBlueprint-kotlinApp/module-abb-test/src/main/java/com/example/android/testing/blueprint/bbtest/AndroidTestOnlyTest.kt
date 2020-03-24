@@ -33,11 +33,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-/**
- * A simple integration test which checks the validity of a string loaded from resources.
- */
 @RunWith(AndroidJUnit4::class)
-class AndroidTestOnlyModuleTest {
+class AndroidTestOnlyTest {
 
     @Suppress("MemberVisibilityCanPrivate") // ActivityTestRule needs to be public
     @get:Rule
@@ -60,22 +57,8 @@ class AndroidTestOnlyModuleTest {
     val activity by lazy { activityRule.activity }
 
     @Test fun verifyItsWorking() {
-//        val intent = object : Intent(ACTION_VIEW) {
-//            init {
-//                super.setClassName(
-//                    InstrumentationRegistry.getInstrumentation().targetContext,
-//                    "com.example.android.testing.blueprint.HelloTestingBlueprintActivity"
-//                )
-//            }
-//            override fun setClassName(packageName: String, className: String): Intent {
-//                return this
-//            }
-//        }
-
-//        launchActivity<Activity>(intent).onActivity { activity ->
-            onView(withText("Android Testing!")).perform(click())
-            onView(withId(activity.resources.getIdentifier("text_view_rocks", "id", activity.packageName)))
-                .check(ViewAssertions.matches(withText("Rocks")))
-//        }
+        onView(withText("Android Testing!")).perform(click())
+        onView(withId(activity.resources.getIdentifier("text_view_rocks", "id", activity.packageName)))
+            .check(ViewAssertions.matches(withText("Rocks")))
     }
 }

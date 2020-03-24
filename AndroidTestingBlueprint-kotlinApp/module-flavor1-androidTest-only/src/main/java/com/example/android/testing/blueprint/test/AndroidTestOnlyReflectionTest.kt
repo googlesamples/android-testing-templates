@@ -35,10 +35,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
- * A simple integration test which checks the validity of a string loaded from resources.
+ * java.lang.IllegalStateException: This app has been built with an incorrect configuration.
+ * Please configure your build for VectorDrawableCompat.
  */
 @RunWith(AndroidJUnit4::class)
-class AndroidTestOnlyModuleTest {
+class AndroidTestOnlyReflectionTest {
 
     @Suppress("MemberVisibilityCanPrivate") // ActivityTestRule needs to be public
     @get:Rule
@@ -58,23 +59,11 @@ class AndroidTestOnlyModuleTest {
             }
         }
     }
-//    var activityRule = ActivityTestRule(HelloTestingBlueprintActivity::class.java)
     val activity by lazy { activityRule.activity }
 
     @Test fun verifyItsWorking() {
-//        val intent = Intent.makeMainActivity(ComponentName(
-//            InstrumentationRegistry.getInstrumentation().targetContext,
-//            "$APP_PACKAGE.HelloTestingBlueprintActivity"
-//        ))
-
-//        launchActivity<HelloTestingBlueprintActivity>().onActivity { activity ->
-            onView(withText("Android Testing!")).perform(click())
-            onView(withId(activity.resources.getIdentifier("text_view_rocks", "id", activity.packageName)))
-                .check(matches(withText("Rocks")))
-//        onView(withId(R.id.btn_hello_android_testing)).perform(click())
-//        onView(withId(R.id.text_view_rocks))
-//            .check(matches(withText(
-//                activity.getString(R.string.android_testing_rocks))))
-//        }
+        onView(withText("Android Testing!")).perform(click())
+        onView(withId(activity.resources.getIdentifier("text_view_rocks", "id", activity.packageName)))
+            .check(matches(withText("Rocks")))
     }
 }
