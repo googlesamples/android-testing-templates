@@ -3,6 +3,12 @@
 A collection of Google's Android testing tools and frameworks, all integrated in a single
 application project.
 
+## Common errors
+
+> Error=Unable to find instrumentation info for: ComponentInfo{com.example.android.testing.blueprint.flavor1.test/android.support.test.runner.AndroidJUnitRunner}
+
+It's probably because test runner is wrong, see `adb shell pm list instrumentation` output to fix it.
+
 ## Structure:
 
 - `app/` - Main application
